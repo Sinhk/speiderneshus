@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { siteContent } from "@/lib/content";
+
+const { highlights, pricing, pricingNote, siteDescription, siteTagline } = siteContent;
 
 export default function HomePage() {
   return (
@@ -8,14 +11,13 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 py-20 text-center">
           <div className="text-6xl mb-4">⚜️</div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Speidernes Hus
+            {siteContent.siteName}
           </h1>
           <p className="text-xl md:text-2xl text-green-200 mb-3">
-            Molde, Møre og Romsdal
+            {siteTagline}
           </p>
           <p className="text-lg text-green-100 max-w-2xl mx-auto mb-8">
-            Lei vårt hyggelige hus til ditt neste arrangement — møter, kurs,
-            bursdager, overnatting og mye mer.
+            {siteDescription}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -40,38 +42,7 @@ export default function HomePage() {
           Hvorfor leie Speidernes Hus?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              icon: "🏡",
-              title: "Hyggelige lokaler",
-              desc: "Stor møtesal, fullt utstyrt kjøkken, og overnatting for opp til 30 personer.",
-            },
-            {
-              icon: "📍",
-              title: "Sentral beliggenhet",
-              desc: "Midt i Molde sentrum, med gode parkeringsmuligheter og enkel tilgang med kollektivtransport.",
-            },
-            {
-              icon: "💰",
-              title: "Rimelige priser",
-              desc: "Konkurransedyktige leiepriser for lag, foreninger, bedrifter og privatpersoner.",
-            },
-            {
-              icon: "🍳",
-              title: "Fullt utstyrt kjøkken",
-              desc: "Profesjonelt kjøkken med komfyr, ovn, kjøleskap, og alt utstyr for matservering.",
-            },
-            {
-              icon: "🛏️",
-              title: "Overnatting",
-              desc: "Soverom og sovesaler for opp til 30 personer med sengeklær inkludert.",
-            },
-            {
-              icon: "♿",
-              title: "Tilgjengelig for alle",
-              desc: "Universell utforming med rullestolrampe og tilpassede toaletter.",
-            },
-          ].map((item) => (
+          {highlights.map((item) => (
             <div
               key={item.title}
               className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
@@ -91,44 +62,10 @@ export default function HomePage() {
             Priser
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {[
-              {
-                name: "Dagleie",
-                price: "1 500",
-                unit: "per dag",
-                features: ["Møtesal", "Kjøkken", "Toaletter"],
-                color: "border-green-200",
-              },
-              {
-                name: "Helgeleie",
-                price: "3 500",
-                unit: "fredag–søndag",
-                features: [
-                  "Møtesal",
-                  "Kjøkken",
-                  "Toaletter",
-                  "Overnatting inkl.",
-                ],
-                color: "border-yellow-400",
-                highlight: true,
-              },
-              {
-                name: "Ukeleie",
-                price: "8 000",
-                unit: "per uke",
-                features: [
-                  "Møtesal",
-                  "Kjøkken",
-                  "Toaletter",
-                  "Overnatting inkl.",
-                  "Rabatt",
-                ],
-                color: "border-green-200",
-              },
-            ].map((plan) => (
+            {pricing.map((plan) => (
               <div
                 key={plan.name}
-                className={`bg-white rounded-2xl p-6 border-2 ${plan.color} ${plan.highlight ? "shadow-lg scale-105" : "shadow-sm"}`}
+                className={`bg-white rounded-2xl p-6 border-2 ${plan.highlight ? "border-yellow-400 shadow-lg scale-105" : "border-green-200 shadow-sm"}`}
               >
                 {plan.highlight && (
                   <div className="bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full inline-block mb-3">
@@ -157,8 +94,7 @@ export default function HomePage() {
             ))}
           </div>
           <p className="text-center text-gray-500 text-sm mt-6">
-            Alle priser er inkl. mva. Ta kontakt for tilpassede priser til
-            organisasjoner og lengre leieperioder.
+            {pricingNote}
           </p>
         </div>
       </section>

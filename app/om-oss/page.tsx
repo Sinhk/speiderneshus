@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { siteContent } from "@/lib/content";
+
+const { about, facilities, capacity, contact } = siteContent;
 
 export default function OmOssPage() {
   return (
@@ -8,8 +11,7 @@ export default function OmOssPage() {
         <div className="text-5xl mb-4">🏡</div>
         <h1 className="text-3xl font-bold text-gray-800 mb-3">Om Speidernes Hus</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Et allsidig og moderne hus i hjertet av Molde — perfekt for alt fra
-          speidermøter til bedriftskurs og familieselskaper.
+          {about.intro}
         </p>
       </div>
 
@@ -17,16 +19,10 @@ export default function OmOssPage() {
       <section className="bg-white border border-gray-100 rounded-2xl p-8 mb-8 shadow-sm">
         <h2 className="text-xl font-bold text-gray-800 mb-4">Vår historie</h2>
         <p className="text-gray-600 leading-relaxed mb-4">
-          Speidernes Hus i Molde har vært base for speideraktiviteter i regionen i
-          over 50 år. Huset ble etablert av lokale speidertropper og har gjennom
-          årene blitt modernisert og utvidet for å møte behovene til et bredt
-          spekter av brukere.
+          {about.historyParagraph1}
         </p>
         <p className="text-gray-600 leading-relaxed">
-          I dag er huset et populært utleieobjekt for lag, foreninger, bedrifter og
-          privatpersoner — alt mens det fortsatt er hjem for speiderne i Molde.
-          Inntektene fra utleie går direkte tilbake til speideraktivitetene i
-          nærområdet.
+          {about.historyParagraph2}
         </p>
       </section>
 
@@ -34,48 +30,7 @@ export default function OmOssPage() {
       <section className="mb-8">
         <h2 className="text-xl font-bold text-gray-800 mb-6">Fasiliteter</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {[
-            {
-              icon: "🏛️",
-              title: "Møtesal",
-              desc: "Stor sal med plass til 80 personer (teater) eller 50 (klasserom). Projektor, lerret og lydanlegg inkludert.",
-            },
-            {
-              icon: "🍳",
-              title: "Storkjøkken",
-              desc: "Fullt utstyrt kjøkken med komfyr, stekeovn, oppvaskmaskin, og kapasitet for stormatlag.",
-            },
-            {
-              icon: "🛏️",
-              title: "Overnatting",
-              desc: "Soverom og sovedorm for opp til 30 personer. Sengeklær og håndklær utleies.",
-            },
-            {
-              icon: "🚿",
-              title: "Dusj og bad",
-              desc: "Separate garderober med dusjer og toaletter for menn og kvinner.",
-            },
-            {
-              icon: "🌿",
-              title: "Uteområde",
-              desc: "Stor tomt med sittegrupper, grill og plass for lek og aktiviteter utendørs.",
-            },
-            {
-              icon: "🚗",
-              title: "Parkering",
-              desc: "Gratis parkering for opp til 20 biler rett utenfor huset.",
-            },
-            {
-              icon: "♿",
-              title: "Universell utforming",
-              desc: "Tilrettelagt for bevegelseshemmede med rullestolrampe, bred dør og tilpasset toalett.",
-            },
-            {
-              icon: "📶",
-              title: "Wi-Fi",
-              desc: "Høyhastighets trådløst internett i alle rom, gratis for leietakere.",
-            },
-          ].map((f) => (
+          {facilities.map((f) => (
             <div
               key={f.title}
               className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm"
@@ -93,10 +48,10 @@ export default function OmOssPage() {
         <h2 className="text-xl font-bold text-gray-800 mb-6">Kapasitet</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
-            { value: "80", label: "Daggjester (teater)" },
-            { value: "50", label: "Daggjester (klasserom)" },
-            { value: "30", label: "Overnattingsplasser" },
-            { value: "20", label: "Parkeringsplasser" },
+            { value: String(capacity.theatreSeats), label: "Daggjester (teater)" },
+            { value: String(capacity.classroomSeats), label: "Daggjester (klasserom)" },
+            { value: String(capacity.sleepingPlaces), label: "Overnattingsplasser" },
+            { value: String(capacity.parkingSpots), label: "Parkeringsplasser" },
           ].map((s) => (
             <div key={s.label}>
               <div className="text-3xl font-bold text-green-700">{s.value}</div>
@@ -112,10 +67,11 @@ export default function OmOssPage() {
         <div className="flex items-start gap-3 mb-4">
           <span className="text-2xl">📍</span>
           <div>
-            <p className="font-medium text-gray-800">Eksempelveien 1, 6413 Molde</p>
+            <p className="font-medium text-gray-800">
+              {contact.address}, {contact.postalCode} {contact.city}
+            </p>
             <p className="text-gray-600 text-sm mt-1">
-              Sentralt plassert i Molde, med kort vei til rutebilstasjonen og
-              Molde sentrum. Buss nr. 1 og 3 stopper rett utenfor.
+              {about.locationDescription}
             </p>
           </div>
         </div>

@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { siteContent } from "@/lib/content";
+
+const { contact } = siteContent;
 
 interface FormData {
   name: string;
@@ -54,7 +57,7 @@ export default function KontaktPage() {
                 <div>
                   <div className="font-medium text-gray-700">Adresse</div>
                   <div className="text-gray-600">
-                    Eksempelveien 1<br />6413 Molde
+                    {contact.address}<br />{contact.postalCode} {contact.city}
                   </div>
                 </div>
               </li>
@@ -63,10 +66,10 @@ export default function KontaktPage() {
                 <div>
                   <div className="font-medium text-gray-700">Telefon</div>
                   <a
-                    href="tel:+4712345678"
+                    href={`tel:${contact.phone.replace(/\s/g, "")}`}
                     className="text-green-700 hover:underline"
                   >
-                    +47 123 45 678
+                    {contact.phone}
                   </a>
                 </div>
               </li>
@@ -75,10 +78,10 @@ export default function KontaktPage() {
                 <div>
                   <div className="font-medium text-gray-700">E-post</div>
                   <a
-                    href="mailto:kontakt@speiderneshus.no"
+                    href={`mailto:${contact.email}`}
                     className="text-green-700 hover:underline"
                   >
-                    kontakt@speiderneshus.no
+                    {contact.email}
                   </a>
                 </div>
               </li>
@@ -89,7 +92,7 @@ export default function KontaktPage() {
                     Åpningstider (henvendelser)
                   </div>
                   <div className="text-gray-600">
-                    Mandag–fredag: 09:00–17:00
+                    {contact.openingHours}
                   </div>
                 </div>
               </li>

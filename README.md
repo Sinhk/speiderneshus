@@ -76,6 +76,22 @@ I adminpanelet kan du:
 
 Godkjente bookinger vises automatisk som opptatte datoer i den offentlige kalenderen.
 
-## Utplassering
+## Innholdskonfigurasjon
+
+All tekst, kontaktinformasjon, priser og fasilitetsbeskrivelser er samlet i **`lib/content.ts`**. Oppdater verdiene der for å endre innholdet på hele nettstedet.
+
+## Migrering fra Wix
+
+For å hente innhold fra det eksisterende Wix-nettstedet og overføre det til `lib/content.ts`:
+
+```bash
+node scripts/fetch-wix-content.mjs
+```
+
+Scriptet skriver ut JSON med alle tekster, kontaktdetaljer og overskrifter hentet fra Wix-siden. Kopier de relevante verdiene inn i `lib/content.ts`.
+
+> **Merk:** Scriptet krever internettilgang til `speiderneshus.wixsite.com`. Kjør det lokalt på maskinen din.
+
+
 
 Appen kan utplasseres på [Vercel](https://vercel.com/), [Railway](https://railway.app/), eller en egen server. Husk å sette `ADMIN_PASSWORD`-miljøvariabelen i produksjonsmiljøet.
